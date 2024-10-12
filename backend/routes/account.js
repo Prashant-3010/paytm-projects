@@ -8,17 +8,14 @@ const router = express.Router();
 module.exports = router;
 
 router.get("/balance", authMiddleware, async(req, res) => {
-    res.json({
-        msg  : "neeche ka nhi aya",
-        userId : req.userId
-    })
+    
     const account = await Account.findOne({
         userId : req.userId
     });
 
-    // res.json({
-    //     balance : account
-    // })
+    res.json({
+        balance : account.balance
+    })
 });
 
 router.post("/transfer" , authMiddleware, async(req, res) => {
